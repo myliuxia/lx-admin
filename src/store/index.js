@@ -1,11 +1,12 @@
-import Vue from "vue";
-import Vuex from "vuex";
+import Vue from 'vue'
+import Vuex from 'vuex'
+import lxAdmin from './modules'
+Vue.use(Vuex)
 
-Vue.use(Vuex);
-
-export default new Vuex.Store({
-  state: {},
-  mutations: {},
-  actions: {},
-  modules: {}
-});
+const store = {
+  strict: process.env.NODE_ENV === 'development',
+  modules: {
+    lxAdmin
+  }
+}
+export default new Vuex.Store(store)

@@ -3,7 +3,6 @@ import VueRouter from "vue-router";
 import { routes } from "./map";
 import layout from "@/layout/index.vue";
 
-
 const load = (name, ext = "vue") => () => import(`@/pages/${name}.${ext}`);
 
 Vue.use(VueRouter);

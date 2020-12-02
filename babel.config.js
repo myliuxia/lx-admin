@@ -1,12 +1,12 @@
 module.exports = {
-  presets: [['@vue/app', { modules: false }]],
+  presets: [["@vue/app", { modules: false }]],
   plugins: [
     [
-      'component',
+      "component",
       {
-        libraryName: 'element-ui',
-        styleLibraryName: '~theme'
+        libraryName: "element-ui",
+        styleLibraryName: "~theme"
       }
     ]
   ]
-}
+};

@@ -4,7 +4,12 @@
 <script>
 export default {
   data() {
-    return {};
+    return {}
+  },
+  methods: {
+    getls() {
+      console.log(1233)
+    }
   }
-};
+}
 </script>

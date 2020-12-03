@@ -1,5 +1,5 @@
-import { setProperty } from "@/store/persistence";
-import remove from "lodash/remove";
+import { setProperty } from '@/store/persistence'
+import remove from 'lodash/remove'
 
 const mutations = {
   /**
@@ -8,12 +8,12 @@ const mutations = {
    * @param param1 index, payload
    */
   updatePage(state, { index, params, query, meta, path }) {
-    const page = state.pool[index];
-    page.params = params;
-    page.query = query;
-    page.meta = meta;
-    page.path = path;
-    state.pool.splice(index, 1, page);
+    const page = state.pool[index]
+    page.params = params
+    page.query = query
+    page.meta = meta
+    page.path = path
+    state.pool.splice(index, 1, page)
   },
   /**
    * 设置一个页面
@@ -21,12 +21,10 @@ const mutations = {
    * @param pool pool
    */
   setPool(state, pool) {
-    state.pool = pool;
+    state.pool = pool
     // 设置缓存
-    state.keepAlive = state.pool
-      .filter(item => item.meta.cache)
-      .map(item => item.name);
-    setProperty("page.pool", state.pool);
+    state.keepAlive = state.pool.filter(item => item.meta.cache).map(item => item.name)
+    setProperty('page.pool', state.pool)
   },
   /**
    * 加入一个页面
@@ -35,22 +33,22 @@ const mutations = {
    */
   putPool(state, page) {
     // 判断是否为首页，如果是则放在数组最前端
-    if (page.name === "home") {
-      state.pool.unshift(page);
-      const keep = [...state.keepAlive];
+    if (page.name === 'home') {
+      state.pool.unshift(page)
+      const keep = [...state.keepAlive]
       if (page.meta.cache) {
-        keep.unshift(page.name);
-        state.keepAlive = Array.from(new Set(keep));
+        keep.unshift(page.name)
+        state.keepAlive = Array.from(new Set(keep))
       }
     } else {
-      state.pool.push(page);
-      const keep = [...state.keepAlive];
+      state.pool.push(page)
+      const keep = [...state.keepAlive]
       if (page.meta.cache) {
-        keep.push(page.name);
-        state.keepAlive = Array.from(new Set(keep));
+        keep.push(page.name)
+        state.keepAlive = Array.from(new Set(keep))
       }
     }
-    setProperty("page.pool", state.pool);
+    setProperty('page.pool', state.pool)
   },
   /**
    * 删除若干页面
@@ -58,15 +56,15 @@ const mutations = {
    * @param param1 index, count
    */
   delPool(state, { index, count = 1 }) {
-    const pool = [...state.pool];
-    const poolItems = pool.splice(index, count);
-    const keep = [...state.keepAlive];
-    const names = poolItems.map(item => item.name);
+    const pool = [...state.pool]
+    const poolItems = pool.splice(index, count)
+    const keep = [...state.keepAlive]
+    const names = poolItems.map(item => item.name)
     // 删除对应的缓存
-    remove(keep, item => names.indexOf(item) !== -1);
-    state.pool = pool;
-    state.keepAlive = keep;
-    setProperty("page.pool", state.pool);
+    remove(keep, item => names.indexOf(item) !== -1)
+    state.pool = pool
+    state.keepAlive = keep
+    setProperty('page.pool', state.pool)
   },
   /**
    * 设置当前选中页面
@@ -74,9 +72,10 @@ const mutations = {
    * @param name name
    */
   setCurrent(state, name) {
-    state.current = name;
-    setProperty("page.current", state.current);
+    state.current = name
+    setProperty('page.current', state.current)
   }
+
   /**
    * 设置滚动效果
    * @param state state
@@ -88,6 +87,6 @@ const mutations = {
   // }
 
   // 保存路由组件router-view的实例
-};
+}
 
-export default mutations;
+export default mutations

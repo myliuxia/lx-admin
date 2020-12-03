@@ -5,10 +5,10 @@
 
 <script>
 export default {
-  name: "layout",
+  name: 'layout',
   components: {},
   computed: {},
   methods: {},
   mounted() {}
-};
+}
 </script>

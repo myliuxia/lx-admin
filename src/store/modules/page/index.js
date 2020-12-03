@@ -1,13 +1,13 @@
-import actions from "./actions";
-import mutations from "./mutations";
+import actions from './actions'
+import mutations from './mutations'
 
 const state = {
   keepAlive: []
-};
+}
 const module = {
   namespaced: true,
   state,
   actions,
   mutations
-};
-export default module;
+}
+export default module

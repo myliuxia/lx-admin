@@ -6,12 +6,12 @@ import { MessageBox, Message } from 'element-ui'
 const instance = axios.create({
   timeout: 60000,
   headers: {
-    'Content-Type': 'application/json; charset=utf-8'
-  }
+    'Content-Type': 'application/json; charset=utf-8',
+  },
 })
 
 const statusTextMap = {
-  401: '登录超时, 请重新登录'
+  401: '登录超时, 请重新登录',
 }
 const successResultCode = ['000000', '200', 200]
 
@@ -22,7 +22,7 @@ const successResultCode = ['000000', '200', 200]
 function showAletWith401(msg) {
   MessageBox.alert(msg, '提示', {
     type: 'warning',
-    showClose: false
+    showClose: false,
   })
     .then(async () => {
       db.removeItem('token')
@@ -64,7 +64,7 @@ function createError(e, status, withLogout = false, isCancel, code) {
       withLogout: withLogout,
       stack: e.stack,
       isCancel: isCancel === undefined ? IsCancel(e) : isCancel,
-      showAlert: showAlert
+      showAlert: showAlert,
     }
   }
   return err
@@ -140,9 +140,9 @@ instance.interceptors.response.use(
     return Promise.resolve([
       null,
       createError(withLogout ? new Error(statusTextMap['401']) : new Error(message), status, withLogout, IsCancel(error), code),
-      error.response
+      error.response,
     ])
-  }
+  },
 )
 
 // 路径参数名
@@ -181,11 +181,11 @@ export const http = {
     const formdata = new FormData()
     formdata.append('file', file)
     return instance.post(url, formdata, {
-      headers: { 'Content-Type': 'multipart/form-data' }
+      headers: { 'Content-Type': 'multipart/form-data' },
     })
   },
 
-  origin: instance
+  origin: instance,
 }
 // CancelToken
 export const CancelToken = cancelToken
@@ -197,7 +197,7 @@ export default {
     Object.defineProperty(Vue.prototype, '$http', {
       get() {
         return http
-      }
+      },
     })
-  }
+  },
 }

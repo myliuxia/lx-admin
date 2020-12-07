@@ -6,7 +6,7 @@ Vue.use(Vuex)
 const store = {
   strict: process.env.NODE_ENV === 'development',
   modules: {
-    lxAdmin
-  }
+    lxAdmin,
+  },
 }
 export default new Vuex.Store(store)

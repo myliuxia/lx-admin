@@ -9,7 +9,7 @@ export default {
   methods: {
     getls() {
       console.log(1233)
-    }
-  }
+    },
+  },
 }
 </script>

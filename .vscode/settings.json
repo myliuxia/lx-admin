@@ -11,4 +11,9 @@
   "eslint.options": {
     "configFile": "./.eslintrc.js"
   },
+  "eslint.validate": [
+    "javascript",
+    "html",
+    "vue"
+  ]
 }

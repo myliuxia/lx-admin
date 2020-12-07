@@ -54,7 +54,7 @@ import {
   BreadcrumbItem,
   Steps,
   Step,
-  Badge
+  Badge,
 } from 'element-ui'
 
 Tooltip.props.hideAfter.default = 0
@@ -125,22 +125,22 @@ export default Vue => {
   Vue.prototype.$success = message =>
     Message({
       message,
-      type: 'success'
+      type: 'success',
     })
   Vue.prototype.$warning = message =>
     Message({
       message,
-      type: 'warning'
+      type: 'warning',
     })
   Vue.prototype.$error = message =>
     Message({
       message,
-      type: 'error'
+      type: 'error',
     })
   Vue.prototype.$info = message =>
     Message({
       message,
-      type: 'info'
+      type: 'info',
     })
 
   Vue.prototype.$notify = Notification

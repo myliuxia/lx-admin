@@ -14,10 +14,10 @@ export default () => {
       {
         path: '/',
         redirect: {
-          name: 'home'
+          name: 'home',
         },
         component: layout,
-        children: routes
+        children: routes,
       },
       {
         name: 'forbidden',
@@ -25,8 +25,8 @@ export default () => {
         component: load('error/error-403/index'),
         meta: {
           title: '无权访问',
-          requiresAuth: false
-        }
+          requiresAuth: false,
+        },
       },
       {
         name: 'not-found',
@@ -34,10 +34,10 @@ export default () => {
         component: load('error/error-404/index'),
         meta: {
           title: '页面不存在',
-          requiresAuth: false
-        }
-      }
-    ]
+          requiresAuth: false,
+        },
+      },
+    ],
   })
   return router
 }

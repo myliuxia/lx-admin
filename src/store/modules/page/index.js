@@ -2,12 +2,12 @@ import actions from './actions'
 import mutations from './mutations'
 
 const state = {
-  keepAlive: []
+  keepAlive: [],
 }
 const module = {
   namespaced: true,
   state,
   actions,
-  mutations
+  mutations,
 }
 export default module

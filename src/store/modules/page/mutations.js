@@ -74,7 +74,7 @@ const mutations = {
   setCurrent(state, name) {
     state.current = name
     setProperty('page.current', state.current)
-  }
+  },
 
   /**
    * 设置滚动效果

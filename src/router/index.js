@@ -5,6 +5,18 @@ import layout from '@/layout/index.vue'
 
 const load = (name, ext = 'vue') => () => import(`@/pages/${name}.${ext}`)
 
+routes.push({
+  name: 'home',
+  path: '/home',
+  component: load('home/index'),
+  meta: {
+    title: '首页',
+    pool: true,
+    cache: true,
+    requiresAuth: true,
+  },
+})
+
 Vue.use(VueRouter)
 export default () => {
   const router = new VueRouter({

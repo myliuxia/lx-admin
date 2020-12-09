@@ -2,7 +2,9 @@
   <!-- 容器 -->
   <div class="layout_container">
     <!-- 左侧 -->
-    <div class="layout_left"></div>
+    <div class="layout_left">
+      <lx-aside></lx-aside>
+    </div>
     <!-- 右侧 -->
     <div class="layout_content">
       <!-- 头部  -->
@@ -18,10 +20,16 @@
   </div>
 </template>
 <script>
+import LxAside from './aside/index.vue'
+import { mapState } from 'vuex'
 export default {
   name: 'layout',
-  components: {},
-  computed: {},
+  components: { LxAside },
+  computed: {
+    ...mapState({
+      keepAlive: state => state.lxAdmin.page.keepAlive,
+    }),
+  },
   methods: {},
   mounted() {},
 }
@@ -34,8 +42,10 @@ export default {
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
+  background-color: #efefef;
   .layout_left {
-    width: 50px;
+    height: 100%;
+    background-color: #ffffff;
   }
   .layout_content {
     display: flex;

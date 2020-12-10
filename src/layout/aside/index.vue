@@ -1,17 +1,13 @@
 <template>
   <div class="lx-page-aside">
-    <el-scrollbar flex-box="1" class="full" :native="true" wrapClass="scroll-y">
-      <div flex-box="1">
-        <el-menu @open="handleOpen" @close="handleClose">
-          <component
-            v-for="(menu, index) in allHighestMenu"
-            :key="index"
-            :is="menu.children && menu.children.length !== 0 ? 'MenuSub' : 'MenuItem'"
-            :menu="menu"
-          ></component>
-        </el-menu>
-      </div>
-    </el-scrollbar>
+    <el-menu @open="handleOpen" @close="handleClose" @select="handleMenuSelect">
+      <component
+        v-for="(menu, index) in allHighestMenu"
+        :key="index"
+        :is="menu.children && menu.children.length !== 0 ? 'MenuSub' : 'MenuItem'"
+        :menu="menu"
+      ></component>
+    </el-menu>
   </div>
 </template>
 
@@ -31,10 +27,7 @@ export default {
           path: '/form',
           title: '表单',
           icon: '',
-          children: [
-            { id: '1-0', title: '基础', path: '/form/base', icon: '', pid: '1' },
-            { id: '1-1', title: '财务处理', path: '/fund/inline', icon: '', pid: '1' },
-          ],
+          children: [{ id: '1-0', title: '基础', path: '/form/base', icon: '', pid: '1' }],
           id: '1',
         },
         {
@@ -67,6 +60,10 @@ export default {
     },
     handleClose(key, keyPath) {
       console.log(key, keyPath)
+    },
+    handleMenuSelect(path) {
+      console.log(path)
+      this.$router.push(path)
     },
   },
 }

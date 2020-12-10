@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
-import router from './router'
+import GetRouter from './router'
 import store from './store'
 import 'flex.css'
 import '@/assets/style/index.scss'
@@ -9,9 +9,9 @@ Vue.config.productionTip = false
 
 Vue.use(ElementUI)
 Vue.prototype.$ELEMENT = { size: 'mini', zIndex: 3000 }
-
+const router = GetRouter()
 new Vue({
   store,
-  router: router(),
+  router,
   render: h => h(App),
 }).$mount('#app')

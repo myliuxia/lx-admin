@@ -78,19 +78,25 @@ const MAPS = [
   },
 ]
 
-const MAP_WITH_COMPONENT = MAPS.filter(item => !!item.path).map(item => ({
-  id: item.id,
-  name: '',
-  // pid: item.pid,
-  path: item.path,
-  meta: {
-    pool: true,
-    cache: !(item.cache === false),
-    requiresAuth: true,
-    title: item.title,
-  },
-  // 预处理 自动给组件添加和对应路由相同的name
-  component: name => () => load(item, name),
-}))
+// 处理组件name
+const parserCompName = name => name.replace(new RegExp('/', 'g'), '_').replace(new RegExp('^_'), '')
+
+const MAP_WITH_COMPONENT = MAPS.filter(item => !!item.path).map(item => {
+  let name = parserCompName(item.path)
+  return {
+    id: item.id,
+    name,
+    // pid: item.pid,
+    path: item.path,
+    meta: {
+      pool: true,
+      cache: !(item.cache === false),
+      requiresAuth: true,
+      title: item.title,
+    },
+    // 预处理 自动给组件添加和对应路由相同的name
+    component: name => () => load(item, name),
+  }
+})
 
 export const routes = MAP_WITH_COMPONENT

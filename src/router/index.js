@@ -6,8 +6,8 @@ import layout from '@/layout/index.vue'
 const load = (name, ext = 'vue') => () => import(`@/pages/${name}.${ext}`)
 
 routes.push({
-  name: 'home',
-  path: '/home',
+  name: 'home_index',
+  path: '/home/index',
   component: load('home/index'),
   meta: {
     title: '首页',
@@ -20,7 +20,7 @@ routes.push({
 Vue.use(VueRouter)
 export default () => {
   const router = new VueRouter({
-    mode: 'history',
+    mode: 'hash',
     base: process.env.BASE_URL,
     routes: [
       {

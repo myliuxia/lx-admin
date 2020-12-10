@@ -27,7 +27,7 @@ export default {
   components: { LxAside },
   computed: {
     ...mapState({
-      keepAlive: state => state.lxAdmin.page.keepAlive,
+      keepAlive: (state) => state.lxAdmin.page.keepAlive,
     }),
   },
   methods: {},

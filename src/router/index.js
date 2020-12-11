@@ -6,7 +6,7 @@ import layout from '@/layout/index.vue'
 const load = (name, ext = 'vue') => () => import(`@/pages/${name}.${ext}`)
 
 routes.push({
-  name: 'home_index',
+  name: 'home',
   path: '/home/index',
   component: load('home/index'),
   meta: {

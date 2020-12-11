@@ -3,7 +3,7 @@ const FORM_PATH = '/form/'
 const DIALOG_PATH = '/dialog/'
 
 const load = (item, name) => {
-  return import(`@/pages${item.path}`).then(component => {
+  return import(`@/pages${item.path}`).then((component) => {
     if (typeof component.default === 'object') {
       // 正常标准写法, 未使用ts
       component.default.name = name
@@ -79,9 +79,9 @@ const MAPS = [
 ]
 
 // 处理组件name
-const parserCompName = name => name.replace(new RegExp('/', 'g'), '_').replace(new RegExp('^_'), '')
+const parserCompName = (name) => name.replace(new RegExp('/', 'g'), '_').replace(new RegExp('^_'), '')
 
-const MAP_WITH_COMPONENT = MAPS.filter(item => !!item.path).map(item => {
+const MAP_WITH_COMPONENT = MAPS.filter((item) => !!item.path).map((item) => {
   let name = parserCompName(item.path)
   return {
     id: item.id,
@@ -95,7 +95,7 @@ const MAP_WITH_COMPONENT = MAPS.filter(item => !!item.path).map(item => {
       title: item.title,
     },
     // 预处理 自动给组件添加和对应路由相同的name
-    component: name => () => load(item, name),
+    component: () => load(item, name),
   }
 })
 

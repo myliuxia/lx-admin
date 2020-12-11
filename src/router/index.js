@@ -1,11 +1,11 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import { routes } from './map'
+import { routerArr } from './dynamic'
 import layout from '@/layout/index.vue'
 
 const load = (name, ext = 'vue') => () => import(`@/pages/${name}.${ext}`)
 
-routes.push({
+routerArr.push({
   name: 'home',
   path: '/home/index',
   component: load('home/index'),
@@ -29,7 +29,7 @@ export default () => {
           name: 'home',
         },
         component: layout,
-        children: routes,
+        children: routerArr,
       },
       {
         name: 'forbidden',

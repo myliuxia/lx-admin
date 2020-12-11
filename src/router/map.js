@@ -2,18 +2,6 @@ const TABLE_PATH = '/table/'
 const FORM_PATH = '/form/'
 const DIALOG_PATH = '/dialog/'
 
-const load = (item, name) => {
-  return import(`@/pages${item.path}`).then(component => {
-    if (typeof component.default === 'object') {
-      // 正常标准写法, 未使用ts
-      component.default.name = name
-    } else {
-      // ts 写法
-      component.default.options.name = name
-    }
-    return component
-  })
-}
 // 菜单
 const MAPS = [
   {
@@ -78,25 +66,4 @@ const MAPS = [
   },
 ]
 
-// 处理组件name
-const parserCompName = name => name.replace(new RegExp('/', 'g'), '_').replace(new RegExp('^_'), '')
-
-const MAP_WITH_COMPONENT = MAPS.filter(item => !!item.path).map(item => {
-  let name = parserCompName(item.path)
-  return {
-    id: item.id,
-    name,
-    // pid: item.pid,
-    path: item.path,
-    meta: {
-      pool: true,
-      cache: !(item.cache === false),
-      requiresAuth: true,
-      title: item.title,
-    },
-    // 预处理 自动给组件添加和对应路由相同的name
-    component: () => load(item, name),
-  }
-})
-
-export const routes = MAP_WITH_COMPONENT
+export default MAPS

@@ -2,6 +2,20 @@ const TABLE_PATH = '/table/'
 const FORM_PATH = '/form/'
 const DIALOG_PATH = '/dialog/'
 
+export const PATH_NAMES = (() => {
+  const temp = {
+    [TABLE_PATH]: '表格',
+    [FORM_PATH]: '表单',
+    [DIALOG_PATH]: '弹框',
+  }
+  const obj = {}
+  for (let key in temp) {
+    const name = key.split('/')[1]
+    obj[name] = temp[key]
+  }
+  return obj
+})()
+
 // 菜单
 const MAPS = [
   {

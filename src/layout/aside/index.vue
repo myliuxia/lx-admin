@@ -40,7 +40,6 @@ export default {
      * 切换菜单
      */
     handleMenuSelect(path) {
-      console.log(path)
       this.$router.push(path)
     },
     /**

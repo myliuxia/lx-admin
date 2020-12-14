@@ -8,7 +8,7 @@
     <!-- 右侧 -->
     <div class="layout_content">
       <!-- 头部  -->
-      <div class="layout_content_head">头部</div>
+      <lx-header class="layout_content_head"></lx-header>
       <!-- body -->
       <div class="layout_content_body">
         <!-- 路由 -->
@@ -21,10 +21,11 @@
 </template>
 <script>
 import LxAside from './aside/index.vue'
+import LxHeader from './header/index.vue'
 import { mapState } from 'vuex'
 export default {
   name: 'layout',
-  components: { LxAside },
+  components: { LxAside, LxHeader },
   computed: {
     ...mapState({
       keepAlive: state => state.lxAdmin.page.keepAlive,
@@ -52,6 +53,10 @@ export default {
     flex: 1;
     flex-direction: column;
     .layout_content_head {
+      display: flex;
+      flex-direction: row;
+      justify-content: left;
+      align-items: center;
       height: 50px;
       background-color: #ffffff;
     }

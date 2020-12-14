@@ -1,4 +1,3 @@
-import { setProperty } from '@/store/persistence'
 import remove from 'lodash/remove'
 
 const mutations = {
@@ -24,7 +23,6 @@ const mutations = {
     state.pool = pool
     // 设置缓存
     state.keepAlive = state.pool.filter(item => item.meta.cache).map(item => item.name)
-    setProperty('page.pool', state.pool)
   },
   /**
    * 加入一个页面
@@ -48,7 +46,6 @@ const mutations = {
         state.keepAlive = Array.from(new Set(keep))
       }
     }
-    setProperty('page.pool', state.pool)
   },
   /**
    * 删除若干页面
@@ -64,7 +61,6 @@ const mutations = {
     remove(keep, item => names.indexOf(item) !== -1)
     state.pool = pool
     state.keepAlive = keep
-    setProperty('page.pool', state.pool)
   },
   /**
    * 设置当前选中页面
@@ -73,19 +69,7 @@ const mutations = {
    */
   setCurrent(state, name) {
     state.current = name
-    setProperty('page.current', state.current)
   },
-
-  /**
-   * 设置滚动效果
-   * @param state state
-   * @param scrollEffect scrollEffect
-   */
-  // setScrollEffect(state, scrollEffect: string) {
-  //   state.scrollEffect = scrollEffect;
-  //   setProperty("page.scrollEffect", state.scrollEffect);
-  // }
-
   // 保存路由组件router-view的实例
 }
 

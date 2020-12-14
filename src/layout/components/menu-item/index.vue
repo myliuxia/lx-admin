@@ -1,7 +1,7 @@
 <template>
   <el-menu-item :index="menu.path || getUniqueId">
     <template slot="title">
-      <i v-if="menu.icon" :class="[menu.icon]" class="menu_icon"></i>
+      <i v-if="menu.icon" :class="[menu.icon]" class="icon"></i>
       <span>{{ menu.title }}</span>
     </template>
   </el-menu-item>

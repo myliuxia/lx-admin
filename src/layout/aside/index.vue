@@ -1,6 +1,6 @@
 <template>
-  <div class="lx-page-aside">
-    <el-menu @open="handleOpen" @close="handleClose" @select="handleMenuSelect">
+  <div class="lx-page-aside" :class="{ 'lx-page-aside--collapse': collapse }">
+    <el-menu class="menu-box" @open="handleOpen" @close="handleClose" @select="handleMenuSelect" :collapse="collapse">
       <component
         v-for="(menu, index) in allHighestMenu"
         :key="index"
@@ -8,6 +8,9 @@
         :menu="menu"
       ></component>
     </el-menu>
+    <div class="collapse-toggle" @click="handleToggleClick()" :title="(collapse ? '展开' : '收起') + '菜单'">
+      <i class="fs-18" :class="collapse ? 'el-icon-s-unfold' : 'el-icon-s-fold'"></i>
+    </div>
   </div>
 </template>
 
@@ -23,6 +26,7 @@ export default {
       active: '',
       // 左侧菜单
       allHighestMenu: menuArr,
+      collapse: false, // 是否收取
     }
   },
   methods: {
@@ -32,16 +36,55 @@ export default {
     handleClose(key, keyPath) {
       console.log(key, keyPath)
     },
+    /**
+     * 切换菜单
+     */
     handleMenuSelect(path) {
       console.log(path)
       this.$router.push(path)
+    },
+    /**
+     * 菜单展开收起
+     */
+    handleToggleClick() {
+      this.collapse = !this.collapse
     },
   },
 }
 </script>
 <style lang="scss">
 .lx-page-aside {
-  width: 180px;
+  width: 200px;
   text-align: left;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: 0.3s width ease-in-out, 0.3s padding-left ease-in-out, 0.3s padding-right ease-in-out;
+  &.lx-page-aside--collapse {
+    width: 65px;
+  }
+  .el-menu {
+    border-right: none;
+    .icon {
+      vertical-align: middle;
+      margin-right: 5px;
+      width: 24px;
+      text-align: center;
+      font-size: 18px;
+    }
+  }
+  .menu-box {
+    flex: 1;
+    &:not(.el-menu--collapse) {
+      width: 200px;
+      min-height: 400px;
+    }
+  }
+  .collapse-toggle {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 </style>

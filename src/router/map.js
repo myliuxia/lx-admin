@@ -7,7 +7,7 @@ const MAPS = [
   {
     id: '1',
     title: '表格',
-    icon: 'icon-baobiao',
+    icon: 'el-icon-brush',
     pid: null,
   },
   {
@@ -34,7 +34,7 @@ const MAPS = [
   {
     id: '2',
     title: '表单',
-    icon: 'icon-baobiao',
+    icon: 'el-icon-document',
     pid: null,
   },
   {
@@ -47,7 +47,7 @@ const MAPS = [
   {
     id: '3',
     title: '弹框',
-    icon: 'icon-baobiao',
+    icon: 'el-icon-chat-line-square',
     pid: null,
   },
   {

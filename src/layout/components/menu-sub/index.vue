@@ -1,7 +1,7 @@
 <template>
   <el-submenu :index="menu.path || getUniqueId" v-if="!menu.isHide">
     <template slot="title">
-      <i v-if="menu.icon" class="menu_icon iconfont" :class="menu.icon"></i>
+      <i v-if="menu.icon" class="icon" :class="menu.icon"></i>
       <span>{{ this.menu.title }}</span>
     </template>
     <template v-for="child in menu.children ? menu.children : []">

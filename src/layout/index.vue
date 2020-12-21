@@ -11,6 +11,7 @@
       <lx-header class="layout_content_head"></lx-header>
       <!-- body -->
       <div class="layout_content_body">
+        <lx-tabs></lx-tabs>
         <!-- 路由 -->
         <keep-alive :include="keepAlive">
           <router-view ref="routerView" :key="$route.fullPath" class="router_view"></router-view>
@@ -22,10 +23,11 @@
 <script>
 import LxAside from './aside/index.vue'
 import LxHeader from './header/index.vue'
+import LxTabs from './tabs/index.vue'
 import { mapState } from 'vuex'
 export default {
   name: 'layout',
-  components: { LxAside, LxHeader },
+  components: { LxAside, LxHeader, LxTabs },
   computed: {
     ...mapState({
       keepAlive: state => state.lxAdmin.page.keepAlive,
@@ -62,6 +64,13 @@ export default {
     }
     .layout_content_body {
       flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 10px;
+    }
+    .router_view {
+      flex: 1;
+      background-color: #ffffff;
     }
   }
 }

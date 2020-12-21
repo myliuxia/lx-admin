@@ -1,5 +1,6 @@
 @import './setting.scss';
 @import '../color.scss';
+@import '../element.scss';
 
 [data-theme='#{$theme_name}'] {
   color: $--color-text-primary;

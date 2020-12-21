@@ -8,15 +8,32 @@
         </template>
       </el-tab-pane>
     </el-tabs>
+    <d2-contextmenu :visible.sync="contextmenuFlag" :x="contentmenuX" :y="contentmenuY">
+      <d2-contextmenu-list :menulist="contextmenuList" @rowClick="handleContextMenuClick" />
+    </d2-contextmenu>
   </div>
 </template>
 <script>
+import D2Contextmenu from '@/layout/components/contextmenu/index.vue'
+import D2ContextmenuList from '@/layout/components/contextmenu/components/contentmenuList/index.vue'
 export default {
   name: 'tabs',
-  props: ['vm'],
+  components: { D2Contextmenu, D2ContextmenuList },
   data() {
     return {
       contextmenuFlag: false,
+      contentmenuX: 0,
+      contentmenuY: 0,
+      contextmenuList: [
+        { value: 'refresh', title: '刷新页面', icon: 'refresh' },
+        { value: 'closeLeft', title: '关闭左侧', icon: 'd-arrow-left' },
+        {
+          value: 'closeRight',
+          title: '关闭右侧',
+          icon: 'd-arrow-right',
+        },
+        { value: 'closeOther', title: '关闭其它', icon: 'close' },
+      ],
       tagName: '',
     }
   },
@@ -40,14 +57,14 @@ export default {
       }
       const page = this.tabs.find(p => p.name === tab.name)
       if (page) {
-        this.$store.dispatch('krAdmin/page/setCurrentName', page.name)
+        this.$store.dispatch('lxAdmin/page/setCurrentName', page.name)
         this.$router.push(page)
       }
     },
     handleEdit(tagName, action) {
       switch (action) {
         case 'remove':
-          this.$store.dispatch('krAdmin/page/close', { tagName, vm: this })
+          this.$store.dispatch('lxAdmin/page/close', { tagName, vm: this })
           break
         default:
           break
@@ -66,9 +83,14 @@ export default {
       if (flag) {
         event.preventDefault()
         event.stopPropagation()
+        this.contentmenuX = event.clientX
+        this.contentmenuY = event.clientY
         this.tagName = target.getAttribute('aria-controls').slice(5)
         this.contextmenuFlag = true
       }
+    },
+    handleContextMenuClick(e) {
+      console.log(e)
     },
     handleRefreshClick() {
       this.handlePageCommandChooseed('refresh', this.current)

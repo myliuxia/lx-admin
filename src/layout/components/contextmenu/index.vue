@@ -1,6 +1,11 @@
 <template>
   <div class="d2-contextmenu" v-show="flag" :style="style">
-    <slot />
+    <div v-for="item in menulist" :key="item.value" class="d2-contentmenu-item" flex="cross:center main:center" @click="rowClick(item.value)">
+      <i :class="`el-icon-${item.icon}`"></i>
+      <div class="d2-contentmenu-item-title" flex-box="1">
+        {{ item.title }}
+      </div>
+    </div>
   </div>
 </template>
 
@@ -19,6 +24,10 @@ export default {
     y: {
       type: Number,
       default: 0,
+    },
+    menulist: {
+      type: Array,
+      default: () => [],
     },
   },
   computed: {
@@ -56,10 +65,13 @@ export default {
       }
       window.removeEventListener('mousedown', this.watchContextmenu)
     },
+    rowClick(value) {
+      this.$emit('rowClick', value)
+    },
   },
 }
 </script>
-<style>
+<style lang="scss">
 .d2-contextmenu {
   position: absolute;
   padding: 5px 0;
@@ -68,5 +80,19 @@ export default {
   border: 1px solid #cfd7e5;
   border-radius: 4px;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  .d2-contentmenu-item {
+    padding: 8px 20px 8px 15px;
+    margin: 0;
+    font-size: 14px;
+    color: #606266;
+    cursor: pointer;
+    &:hover {
+      background: #ecf5ff;
+      color: #66b1ff;
+    }
+    .d2-contentmenu-item-title {
+      margin-left: 10px;
+    }
+  }
 }
 </style>

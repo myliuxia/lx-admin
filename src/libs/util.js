@@ -30,3 +30,32 @@ export const recursion = (data, primaryKey, key, value, sortFn = null) => {
   }
   return result
 }
+/**
+ * 随机指定长度字符串
+ * @param len 长度
+ */
+export const randomString = (len = 16) => {
+  let str = Math.random()
+    .toString(36)
+    .substr(2)
+  while (str.length < len) {
+    str += Math.random()
+      .toString(36)
+      .substr(2)
+  }
+  return str.substring(0, len)
+}
+/**
+ * 字符串转换为16进制
+ * @param str 字符串
+ */
+export const stringToHexCharCode = str => {
+  if (str === '') {
+    return ''
+  }
+  const hexCharCode = []
+  for (let i = 0; i < str.length; i++) {
+    hexCharCode.push(str.charCodeAt(i).toString(16))
+  }
+  return hexCharCode.join('')
+}

@@ -8,17 +8,15 @@
         </template>
       </el-tab-pane>
     </el-tabs>
-    <d2-contextmenu :visible.sync="contextmenuFlag" :x="contentmenuX" :y="contentmenuY">
-      <d2-contextmenu-list :menulist="contextmenuList" @rowClick="handleContextMenuClick" />
+    <d2-contextmenu :visible.sync="contextmenuFlag" :x="contentmenuX" :y="contentmenuY" :menulist="contextmenuList" @rowClick="handleContextMenuClick">
     </d2-contextmenu>
   </div>
 </template>
 <script>
 import D2Contextmenu from '@/layout/components/contextmenu/index.vue'
-import D2ContextmenuList from '@/layout/components/contextmenu/components/contentmenuList/index.vue'
 export default {
   name: 'tabs',
-  components: { D2Contextmenu, D2ContextmenuList },
+  components: { D2Contextmenu },
   data() {
     return {
       contextmenuFlag: false,
@@ -89,11 +87,39 @@ export default {
         this.contextmenuFlag = true
       }
     },
-    handleContextMenuClick(e) {
-      console.log(e)
+    handleContextMenuClick(val) {
+      this.handlePageCommandChooseed(val, this.current)
     },
     handleRefreshClick() {
       this.handlePageCommandChooseed('refresh', this.current)
+    },
+
+    handlePageCommandChooseed(command, tagName, routerView) {
+      switch (command) {
+        case 'refresh':
+          this.$store.dispatch('lxAdmin/page/refresh', { tagName, vm: this, rv: routerView })
+          break
+        case 'closeLeft':
+          this.$store.dispatch('lxAdmin/page/closeLeft', { tagName, vm: this })
+          break
+        case 'closeRight':
+          this.$store.dispatch('lxAdmin/page/closeRight', {
+            tagName,
+            vm: this,
+          })
+          break
+        case 'closeOther':
+          this.$store.dispatch('lxAdmin/page/closeOther', {
+            tagName,
+            vm: this,
+          })
+          break
+        case 'closeAll':
+          this.$store.dispatch('lxAdmin/page/closeAll', { tagName, vm: this })
+          break
+        default:
+          break
+      }
     },
   },
 }
